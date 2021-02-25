@@ -9,38 +9,45 @@
 <body>
     <h2>Firebase Web Push Notification</h2>
 
-
-
-
+    <p id="token"></p>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-messaging.js"></script>
     <script>
-        firebase.initializeApp({
-            "messagingSenderId": "972226450495"
-        });
+        var firebaseConfig = {
+                apiKey: "AIzaSyAG6I4_G5ZQBNDpab4RthQlZlv6UGR0wtQ",
+                authDomain: "inspiring-a529b.firebaseapp.com",
+                projectId: "inspiring-a529b",
+                storageBucket: "inspiring-a529b.appspot.com",
+                messagingSenderId: "972226450495",
+                appId: "1:972226450495:web:e0fc7e975fd1bd48f7548a",
+                measurementId: "G-ZYHKE94RNL"
+            };
+        firebase.initializeApp(firebaseConfig);
         const messaging = firebase.messaging();
+
         function  IntitalizeFireBaseMessaging() {
             messaging
             .requestPermission()
             .then(function () {
                 console.log("Notification permission")
+                return messaging.getToken();
             })
             .then(function (token) {
-                console.log("Token :"+token);
-                document.gerElementById("token").innerHTML=token;
+                console.log("Token : "+token);
+                document.getElementById("token").innerHTML=token;
             })
             .catch(function(reason) {
                 console.log(reason);
             });
         }
 
-        messaging.onmessage(function (payload) {
+        messaging.onMessage(function (payload) {
             console.log(payload);
         });
         messaging.onTokenRefresh(function () {
             messaging.getToken()
             .then(function (newtoken) {
-                console.log("New Token :"+ newToken);
+                console.log("New Token : "+ newtoken);
             })
             .catch(function (reason){
                 console.log(reason);
