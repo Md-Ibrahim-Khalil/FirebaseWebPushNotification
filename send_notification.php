@@ -25,8 +25,19 @@
          $result = curl_exec($ch);
          print_r($result);
          curl_close($ch);
-        //  send_notification.php?title=Title&message=Message&token=
-         
+               
     }
     sendNotification();
+
+        //  send_notification.php?title=Title&message=Message&token=
+
+        //  send_notification.php?title=Title of Notification&message=Message of Notification &token=
+
+        // https://www.youtube.com/watch?v=TZSIaD1YOm8&t=182s
+
+        // https://www.youtube.com/watch?v=G2Z19ZGZHy0&list=PLb-NlfexLTk-cm5-_K_NMHmjdsjPF7dOp
+
+
 ?>
+
+

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Firebase Push Notification</title>
 </head>
 <body>
     <h2>Firebase Web Push Notification</h2>
@@ -43,6 +43,19 @@
 
         messaging.onMessage(function (payload) {
             console.log(payload);
+            const notificationOption={
+                body: payload.notification.body,
+                icon: payload.notification.icon
+
+            };
+            if(notification.permission==="granted"){
+                var notification = new Notification(payload.notification.title,notificationOption);
+
+                notification.onclick = function(ev) {
+                    window.open(payload.notification.click_action,'_blank');
+                    notification.close();
+                }
+            }
         });
         messaging.onTokenRefresh(function () {
             messaging.getToken()
